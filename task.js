@@ -4,10 +4,9 @@ let tasks = [
   { id: 2, title: "Grocery shopping for the weekend", category: "Personal", priority: "Normal", completed: true }
 ];
 
-let currentUser = {
-  fullName: "John Doe",
-  email: "john@example.com"
-};
+
+const savedUser = localStorage.getItem("taskflow_user");
+let currentUser = savedUser ? JSON.parse(savedUser) : { fullName: "John Doe", email: "john@example.com" };
 
 let currentFilter = "all";
 
