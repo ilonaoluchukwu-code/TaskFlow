@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow - Dashboard</title>
+  <link rel="stylesheet" href="task.css">
+</head>
+<body>
+
+  
+  <header class="navbar">
+
+    <a href="index.html" class="brand-logo">
+      <span class="logo-dot"></span>
+      <span class="brand-blue">Task</span>Flow
+    </a>
+
+
+    <div class="user-menu-container">
+      <button type="button" class="avatar-btn" id="avatarBtn">JD</button>
+
+    
+      <div class="dropdown-menu" id="dropdownMenu">
+        <button type="button" class="dropdown-item" id="openProfileBtn">Users Profile</button>
+        <button type="button" class="dropdown-item logout-item" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="dashboard-container">
+    
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <button type="button" class="nav-item active" data-filter="all">
+          <span>All Tasks</span>
+          <span class="badge" id="countAll">0</span>
+        </button>
+        <button type="button" class="nav-item" data-filter="work">
+          <span>Work</span>
+          <span class="badge" id="countWork">0</span>
+        </button>
+        <button type="button" class="nav-item" data-filter="personal">
+          <span>Personal</span>
+          <span class="badge" id="countPersonal">0</span>
+        </button>
+        <button type="button" class="nav-item" data-filter="history">
+          <span>History</span>
+          <span class="badge" id="countHistory">0</span>
+        </button>
+      </nav>
+    </aside>
+
+    
+    <section class="main-content">
+      
+      <div class="card add-task-card" id="addTaskCard">
+        <div class="input-row">
+          <input type="text" id="taskInput" placeholder="What needs to be done today?">
+          <button type="button" id="addTaskBtn" class="primary-btn">Add Task</button>
+        </div>
+
+        <div class="options-row">
+          <div class="option-group">
+            <label for="categorySelect">Category:</label>
+            <select id="categorySelect">
+              <option value="Personal">Personal</option>
+              <option value="Work">Work</option>
+            </select>
+          </div>
+
+          <div class="option-group">
+            <label for="prioritySelect">Priority:</label>
+            <select id="prioritySelect">
+              <option value="Normal">Normal</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    
+      <div class="card task-list-card">
+        <div class="list-header">
+          <h2 id="sectionTitle">All Tasks</h2>
+          <span id="completedCounter" class="counter-text">0 completed</span>
+        </div>
+
+    
+        <div id="taskList" class="task-list"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Edit User Profile</h3>
+        <button type="button" class="close-btn" id="closeProfileBtn">&times;</button>
+      </div>
+      <form id="profileForm">
+        <div class="form-group">
+          <label for="fullNameInput">Full Name</label>
+          <input type="text" id="fullNameInput" value="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="emailInput">Email Address</label>
+          <input type="email" id="emailInput" value="john@example.com" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" id="cancelProfileBtn">Cancel</button>
+          <button type="submit" class="primary-btn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="task.js"></script>
+</body>
+</html>
