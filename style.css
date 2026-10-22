@@ -1,6 +1,4 @@
-/* ================================
-   1. BASE STYLES & RESET
-   ================================ */
+
 html {
     scroll-behavior: smooth;
 }
@@ -511,6 +509,24 @@ textarea,
     font-style: italic;
 }
 
+
+
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 27px;
+  cursor: pointer;
+  color: #172449;
+}
+
+
+
+
+
+
+
 @media (max-width: 768px) {
     
     .full-screen,
@@ -555,4 +571,43 @@ textarea,
         flex-wrap: wrap;
         gap: 12px;
     }
+
+    
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links{
+    display: none;
+  }
+
+  .nav-buttons{
+    display: none;
+  }
+  nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    padding-top: 15px;
+  }
+/* 
+  .nav-links{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap:15px
+    
+  } */
+
+  
+
+/* .nav-links {
+    display: none;
+}
+
+.nav-links.active {
+    display: flex;
+    flex-direction: column;
+} */
 }

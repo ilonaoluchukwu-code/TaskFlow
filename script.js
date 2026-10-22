@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
+        
             // Success response
             alert(`Thank you, ${name}! Your message has been sent successfully. We will get back to you within 24 hours.`);
             
@@ -25,3 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+
+
+
