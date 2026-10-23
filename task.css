@@ -416,3 +416,83 @@ select {
 .delete-btn:hover {
   background-color: #fecaca;
 }
+@media screen and (max-width: 768px) {
+
+  .dashboard-container {
+    display: flex;
+    flex-direction: column ;
+    padding: 10px ;
+    gap: 15px ;
+    width: 100% ;
+    box-sizing: border-box ;
+  }
+
+
+  .sidebar {
+    width: 100% ;
+    max-width: 100% ;
+  }
+
+  .sidebar-nav {
+    display: flex ;
+    flex-direction: row ;
+    overflow-x: auto ;
+    white-space: nowrap ;
+    gap: 8px ;
+  }
+
+  .nav-item {
+    flex: 0 0 auto ;
+  }
+
+  
+  .main-content {
+    width: 100% ;
+    max-width: 100% ;
+  }
+
+  
+  .input-row {
+    flex-direction: column ;
+    gap: 10px ;
+    display: flex ;
+  }
+
+  .input-row input,
+  .input-row button {
+    width: 100%;
+  }
+
+  
+  @media screen and (max-width: 768px) {
+  
+  .task-options, 
+  .options-group, 
+  .input-row + div {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch ;
+    width: 100% ;
+    box-sizing: border-box ;
+    gap: 12px ;
+    overflow: visible ;
+  }
+
+  .option-item, 
+  .option-wrapper {
+    display: flex ;
+    flex-direction: column ;
+    width: 100% ;
+    box-sizing: border-box ;
+    gap: 4px;
+  }
+
+
+  .task-options select, 
+  .options-group select {
+    width: 100% ;
+    max-width: 100% ;
+    box-sizing: border-box ;
+  }
+}
+}

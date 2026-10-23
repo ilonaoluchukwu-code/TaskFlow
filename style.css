@@ -353,7 +353,6 @@ textarea,
     color: #64748b;
 }
 
-/* ABOUT VISION SECTION */
 .section-about-vision {
     background-color: #f8fafc;
     border-top: 1px solid #e2e8f0;
@@ -571,43 +570,63 @@ textarea,
         flex-wrap: wrap;
         gap: 12px;
     }
-
-    
-  .menu-toggle {
-    display: block;
+    .menu-toggle {
+    display: block ;
   }
-
-  .nav-links{
-    display: none;
-  }
-
-  .nav-buttons{
-    display: none;
-  }
-  nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    gap: 0;
-    padding-top: 15px;
-  }
-/* 
-  .nav-links{
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    gap:15px
-    
-  } */
 
   
+  .navbar .nav-links,
+  .navbar .nav-buttons {
+    display: none ;
+  }
 
-/* .nav-links {
-    display: none;
-}
+ header.navbar {
+    position: relative ;
+  }
 
-.nav-links.active {
+  
+  header.navbar.menu-active .nav-links {
+    display: flex ;
+    flex-direction: column ;
+    align-items: flex-start ;
+    position: absolute ;
+    top: 100% ;
+    right: 20px ;
+    background-color: #ffffff;
+    padding: 16px 20px 10px 20px ;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) ;
+    border-radius: 8px 8px 0 0 ;
+    width: 210px ;
+    gap: 12px ;
+    z-index: 1000 ;
+    box-sizing: border-box ;
+  }
+  header.navbar.menu-active .nav-buttons {
     display: flex;
-    flex-direction: column;
-} */
+    flex-direction: column ;
+    align-items: flex-start ;
+    position: absolute ;
+    top: calc(100% + 155px) ; 
+    right: 20px ;
+    background-color: #ffffff ;
+    padding: 0 20px 16px 20px ;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) ;
+    border-radius: 0 0 8px 8px ;
+    width: 210px ;
+    z-index: 1000 ;
+    box-sizing: border-box ;
+  }
+
+  
+  header.navbar.menu-active .nav-links a,
+  header.navbar.menu-active .nav-buttons a,
+  header.navbar.menu-active .nav-buttons button {
+    width: 100% ;
+    text-align: left ;
+  }
 }
+
+
+
+    
+  
