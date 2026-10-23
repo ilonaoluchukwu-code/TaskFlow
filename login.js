@@ -1,30 +1,37 @@
+// ===== PASTE YOUR GOOGLE CLIENT ID HERE =====
+const GOOGLE_CLIENT_ID = "795211441728-91nlgg3edtosjfr3if65tnelb0cu21hi.apps.googleusercontent.com";
+// ============================================
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.login-form');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
   const rememberCheckbox = document.getElementById('remember');
-  const showBtn = document.querySelector('.show-btn');
+  const toggleBtn = document.getElementById('togglePassword');
   const googleBtn = document.querySelector('.google-btn');
   const forgotLink = document.querySelector('.forgot-link');
 
+  // Load remembered email
   const savedEmail = localStorage.getItem('rememberedEmail');
   if (savedEmail) {
     emailInput.value = savedEmail;
     if (rememberCheckbox) rememberCheckbox.checked = true;
   }
 
-  if (showBtn) {
-    showBtn.addEventListener('click', () => {
+  // ===== Show / Hide Password =====
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
       if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        showBtn.textContent = 'Hide';
+        toggleBtn.textContent = 'Hide';
       } else {
         passwordInput.type = 'password';
-        showBtn.textContent = 'Show';
+        toggleBtn.textContent = 'Show';
       }
     });
   }
 
+  // ===== Normal Email/Password Login =====
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -38,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    // Demo account
     const demoUser = {
       email: 'demo@taskflow.com',
       password: '123456',
@@ -46,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
       lastName: 'User'
     };
 
-    // Find user
     let user = users.find(u => u.email === email && u.password === password);
 
     if (!user && email === demoUser.email && password === demoUser.password) {
@@ -54,12 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (user) {
-      // Save login status
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('userEmail', email);
       localStorage.setItem('userName', (user.firstName || '') + ' ' + (user.lastName || ''));
 
-      // Remember me
       if (rememberCheckbox && rememberCheckbox.checked) {
         localStorage.setItem('rememberedEmail', email);
       } else {
@@ -67,17 +70,53 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       alert('Login successful!');
-      window.location.href = 'tast.html';   // change if your main page has a different name
+      window.location.href = 'task.html';
     } else {
       alert('Invalid email or password');
     }
   });
 
-  // Google button (demo)
+  // ===== Real Google Login =====
   if (googleBtn) {
     googleBtn.addEventListener('click', () => {
-      alert('Google login is not connected yet (demo only)');
+      if (GOOGLE_CLIENT_ID === "YOUR_CLIENT_ID_HERE.apps.googleusercontent.com") {
+        alert('Please add your Google Client ID first in login.js');
+        return;
+      }
+
+      // Load Google Identity Services
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleResponse
+      });
+
+      // This opens the real Google account picker
+      google.accounts.id.prompt();
     });
+  }
+
+  // Handle the response from Google
+  function handleGoogleResponse(response) {
+    // Decode the JWT token (simple way)
+    const data = parseJwt(response.credential);
+
+    // Save the user
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userEmail', data.email);
+    localStorage.setItem('userName', data.name);
+
+    alert('Logged in with Google as ' + data.name);
+    window.location.href = 'task.html';
+  }
+
+  // Helper to decode Google token
+  function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
   }
 
   // Forgot password

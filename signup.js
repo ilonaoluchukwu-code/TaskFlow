@@ -3,14 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullNameInput = document.getElementById('fullname');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
-  const confirmInput = document.getElementById('confirm-password');
+  const confirmInput = document.getElementById('confirmPassword'); // ← changed
   const termsCheckbox = document.getElementById('terms');
-  const showButtons = document.querySelectorAll('.show-btn');
+  const toggleButtons = document.querySelectorAll('.toggle-password'); // ← changed
 
-  // ===== Show / Hide Password (works for both fields) =====
-  showButtons.forEach((btn) => {
+  // ===== Show / Hide Password =====
+  toggleButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const input = btn.previousElementSibling; // the password input next to the button
+      const input = btn.previousElementSibling;
 
       if (input.type === 'password') {
         input.type = 'text';
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Split full name into first + last (simple way)
+    // Split full name
     const nameParts = fullName.split(' ');
     const firstName = nameParts[0];
     const lastName = nameParts.slice(1).join(' ') || '';
@@ -79,6 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('users', JSON.stringify(users));
 
     alert('Account created successfully!');
-    window.location.href = 'login.html';
+    window.location.href = 'task.html';
   });
 });

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaskFlow - Log In</title>
   <link rel="stylesheet" href="login.css">
+  
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
@@ -37,12 +39,13 @@
 
     
       <div class="form-group">
-        <label for="password">Password</label>
-        <div class="password-wrapper">
-          <input type="password" id="password" placeholder="Enter your password" required>
-          <button type="button" class="show-btn">Show</button>
-        </div>
-      </div>
+  <label for="password">Password</label>
+  <div style="position: relative; display: flex; align-items: center;">
+    <input type="password" id="password" placeholder="Enter your password" required style="width: 100%; padding-right: 50px;">
+    <!-- Text button placed right inside/next to the input field -->
+    <button type="button" id="togglePassword" style="position: absolute; right: 12px; background: none; border: none; color: #2563eb; font-size: 12px; font-weight: 600; cursor: pointer;">Show</button>
+  </div>
+</div>
 
       
       <div class="form-actions">
@@ -61,8 +64,9 @@
     <p class="signup-prompt">
       Don't have an account? <a href="signup.html" class="signup-link">Create an account</a>
     </p>
-
   </div>
-   <script src="login.js"></script>
+
+  <script src="login.js"></script>
+
 </body>
 </html>
